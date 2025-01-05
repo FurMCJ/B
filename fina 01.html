@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>某超级</title>
+    <style>
+        /* 基础样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f4f4f9;
+        }
+
+        header {
+            background: linear-gradient(to bottom, #007BFF, #ffffff);
+            color: #000;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        header .subtitle {
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 10px; /* 调整与标题的间距 */
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            color: #fff;
+            background: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #555;
+        }
+
+        .image-display {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .image-display img {
+            max-width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            flex: 1;
+        }
+
+        .about-me {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .about-me h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .about-me p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        footer {
+            background: linear-gradient(to top, #007BFF, #ffffff);
+            color: #000;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* 模态框样式 */
+        .modal {
+            display: none; /* 初始隐藏 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-content img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .close-btn {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            color: #fff;
+            background: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部区域 -->
+    <header>
+        <h1>某超级</h1>
+        <div class="subtitle">没钱没实力，叫我某超级</div>
+    </header>
+
+    <!-- 内容区域 -->
+    <div class="container">
+        <div class="intro">泥嚎❗️ </div>
+        <div class="button-group">
+            <button onclick="showQRCode('qq.png')">显示 QQ 二维码</button>
+            <button onclick="showQRCode('wechat.png')">显示微信二维码</button>
+            <button onclick="showQRCode('douyin.png')">显示抖音二维码</button>
+            <button onclick="showQRCode('bilibili.png')">显示 B 站二维码</button>
+        </div>
+        <div class="image-display">
+            <img src="images/photo1.jpg" alt="照片 1">
+            <img src="images/photo2.jpg" alt="照片 2">
+            <img src="images/photo3.jpg" alt="照片 3">
+        </div>
+
+        <!-- 自我介绍区域 -->
+        <div class="about-me">
+            <h2>关于我</h2>
+            <p>如你所见。。。。。。</p >
+            <p>我也不知道写点什么哈哈</p >
+            <p>欢迎扩列,点击上面的按钮扫码加我好友！</p >
+        </div>
+    </div>
+
+    <!-- 模态框 -->
+    <div class="modal" id="qrCodeModal">
+        <div class="modal-content">
+            <img id="qrCodeImage" src="" alt="二维码">
+            <button class="close-btn" onclick="closeQRCode()">关闭</button>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2025 某超级的博客. 保留所有权利。</p >
+        <p>感谢 ChatGPT大人 给予了我这么多帮助</p >
+    </footer>
+
+    <script>
+        // 显示模态框并加载二维码
+        function showQRCode(imageName) {
+            const modal = document.getElementById('qrCodeModal');
+            const qrCodeImage = document.getElementById('qrCodeImage');
+            qrCodeImage.src = `images/${imageName}`; // 设置图片路径
+            modal.style.display = 'flex'; // 显示模态框
+        }
+
+        // 关闭模态框
+        function closeQRCode() {
+            const modal = document.getElementById('qrCodeModal');
+            modal.style.display = 'none'; // 隐藏模态框
+        }
+    </script>
+</body>
+</html>
